@@ -1,14 +1,17 @@
-# API 
+## 1.Bank
 
-#### Express.js && MongoDB
+#### Nest && MongoDB
 
 ## Routes
 
 #### Globales
 - [ ] Clients
+- [ ] Bénéficiaires
 - [ ] Comptes 
-- [ ] [Virements](#####Virements:)
+- [ ] Virements
 - [ ] Filtres
+- [ ] Messagerie
+- [ ] [ConvLar](##2.ConvLar)
 
 #### Clients
 - [ ] Login
@@ -16,9 +19,12 @@
 - [ ] Register
 
 #### Models
-- [ ] Bénéficiaires
 - [ ] Notifications
 - [ ] Cartes bancaires
 - [ ] Prêts
 
-##### Virements: Params(expéditaire, bénéficiaire, montant)
+## 2.ConvLar
+
+#### Laravel
+
+#### Conversion d'une monnaie à une autre

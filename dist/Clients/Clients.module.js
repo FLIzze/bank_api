@@ -22,7 +22,8 @@ exports.ClientsModule = ClientsModule = __decorate([
         providers: [
             Clients_service_1.ClientsService,
             ...Clients_providers_1.ClientsProviders,
-        ]
+        ],
+        exports: [Clients_service_1.ClientsService]
     })
 ], ClientsModule);
 //# sourceMappingURL=Clients.module.js.map

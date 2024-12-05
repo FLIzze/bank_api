@@ -14,10 +14,32 @@ import { LoansModule } from './loans/loans.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { MessagesModule } from './messages/messages.module';
 import { AdvisorsModule } from './advisors/advisors.module';
+import { LoansController } from './loans/loans.controller';
+import { NotificationsController } from './notifications/notifications.controller';
+import { MessagesController } from './messages/messages.controller';
+import { AdvisorsController } from './advisors/advisors.controller';
 
 @Module({
-  imports: [DatabaseModule,ClientsModule, AccountsModule, CreditcardsModule, LoansModule, NotificationsModule, MessagesModule, AdvisorsModule],
-  controllers: [AppController, ClientsController, AccountsController, CreditcardsController],
+  imports: [DatabaseModule,
+    ClientsModule, 
+    AccountsModule, 
+    CreditcardsModule, 
+    LoansModule, 
+    NotificationsModule, 
+    MessagesModule, 
+    AdvisorsModule, 
+    TransfersModule
+  ],
+  controllers: [AppController, 
+    ClientsController, 
+    AccountsController, 
+    CreditcardsController, 
+    LoansController, 
+    NotificationsController, 
+    MessagesController, 
+    AdvisorsController, 
+    TransfersController
+  ],
   providers: [AppService],
 })
 

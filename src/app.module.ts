@@ -9,9 +9,12 @@ import { ClientsController } from './clients/clients.controller';
 import { AccountsController } from './accounts/accounts.controller';
 import { CreditcardsController } from './creditcards/creditcards.controller';
 import { LoansModule } from './loans/loans.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { MessagesModule } from './messages/messages.module';
+import { AdvisorsModule } from './advisors/advisors.module';
 
 @Module({
-  imports: [DatabaseModule,ClientsModule, AccountsModule, CreditcardsModule, LoansModule],
+  imports: [DatabaseModule,ClientsModule, AccountsModule, CreditcardsModule, LoansModule, NotificationsModule, MessagesModule, AdvisorsModule],
   controllers: [AppController, ClientsController, AccountsController, CreditcardsController],
   providers: [AppService],
 })

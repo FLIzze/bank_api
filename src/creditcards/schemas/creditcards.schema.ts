@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-export const CreditCardsSchema = new Schema({
+export const CreditcardsSchema = new Schema({
   accountId: { type: String, required: true },
   cardNumber: { type: Number, required: true, unique: true },
   ccv: { type: Number, required: true },

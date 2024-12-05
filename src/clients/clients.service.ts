@@ -18,4 +18,20 @@ export class ClientsService {
     async findall():Promise<Clients[]> {
         return this.clientsModel.find().exec();
     }
+
+    async findOne(clientId:string):Promise<Clients> {
+        return this.clientsModel.findOne({clientId}).exec();
+    }
+
+    async update(clientId:string, CreateClientsDto:CreateClientsDto):Promise<Clients> {
+        return this.clientsModel.findOneAndUpdate({clientId}, CreateClientsDto, {new:true}).exec();
+    }
+
+    async delete(clientId:string):Promise<Clients> {
+        return this.clientsModel.findOneAndDelete({clientId}).exec();
+    }
+
+    async findAccounts(clientId:string):Promise<Clients> {
+        return this.clientsModel.findOne({clientId}).populate('accounts').exec();
+    }
 }

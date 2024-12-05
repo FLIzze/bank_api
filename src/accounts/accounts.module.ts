@@ -3,9 +3,10 @@ import { AccountsService } from './accounts.service';
 import { AccountsController } from './accounts.controller';
 import { accountsProviders } from './accounts.providers';
 import { CreditcardsModule } from '../creditcards/creditcards.module';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
-  imports: [CreditcardsModule],
+  imports: [CreditcardsModule, DatabaseModule],
   controllers: [AccountsController],
   providers: [AccountsService, ...accountsProviders],
   exports: [AccountsService],

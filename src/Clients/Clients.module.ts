@@ -10,7 +10,8 @@ import { DatabaseModule } from 'src/database/database.module';
     providers: [
         ClientsService,
         ...ClientsProviders,
-    ]
+    ],
+    exports: [ClientsService],
 })
 
 export class ClientsModule {}

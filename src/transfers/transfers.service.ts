@@ -17,4 +17,14 @@ export class TransfersService {
   async findAll(): Promise<Transfers[]> {
     return this.transfersModel.find().exec();
   }
+
+  async findOne(transferId: string): Promise<Transfers> {
+    return this.transfersModel.findById(transferId).exec();
+  }
+
+  async findByAccountNumber(accountNumber: string): Promise<Transfers[]> {
+    return this.transfersModel.find({
+      $or: [{ fromAccount: accountNumber }, { toAccount: accountNumber }]
+    }).exec();
+  }
 }

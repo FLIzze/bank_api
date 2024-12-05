@@ -8,6 +8,8 @@ import { CreditcardsModule } from './creditcards/creditcards.module';
 import { ClientsController } from './clients/clients.controller';
 import { AccountsController } from './accounts/accounts.controller';
 import { CreditcardsController } from './creditcards/creditcards.controller';
+import { TransfersModule } from './transfers/transfers.module';
+import { TransfersController } from './transfers/transfers.controller';
 import { LoansModule } from './loans/loans.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { MessagesModule } from './messages/messages.module';

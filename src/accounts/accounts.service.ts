@@ -17,4 +17,16 @@ export class AccountsService {
     async findAll(): Promise<Accounts[]> {
         return this.accountModel.find().populate('creditCards').exec();
     }
+
+    async findOne(clientId: string): Promise<Accounts> {
+        return this.accountModel.findOne({clientId}).populate('creditCards').exec();
+    }
+
+    async update(clientId: string, CreateAccountsDto: CreateAccountsDto):Promise<Accounts> {
+        return this.accountModel.findOneAndUpdate({clientId}, CreateAccountsDto, {new:true}).exec();
+    }
+
+    async delete(clientId:string):Promise<Accounts> {
+        return this.accountModel.findOneAndDelete({clientId}).exec();
+    }
 }

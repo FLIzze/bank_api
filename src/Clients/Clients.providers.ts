@@ -1,5 +1,5 @@
 import { Connection } from 'mongoose';
-import { ClientsSchema } from './schemas/Clients.schema';
+import { ClientsSchema } from './schemas/clients.schema';
 
 export const ClientsProviders = [
     {

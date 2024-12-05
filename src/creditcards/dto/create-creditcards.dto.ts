@@ -1,4 +1,4 @@
-export class CreateCreditCardsDto {
+export class CreateCreditcardsDto {
     readonly accountId: string;
     readonly cardNumber: number;
     readonly ccv: number;

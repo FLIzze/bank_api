@@ -1,11 +1,11 @@
 import { Connection } from 'mongoose';
-import { CreditCardsSchema } from './schemas/creditcards.schema';
+import { CreditcardsSchema } from './schemas/creditcards.schema';
 
-export const creditcardsProviders = [
+export const CreditcardsProviders = [
   {
     provide: 'CREDITCARDS_MODEL',
     useFactory: (connection: Connection) =>
-      connection.model('CreditCards', CreditCardsSchema),
+      connection.model('CreditCards', CreditcardsSchema),
     inject: ['BANK'],
   },
 ];

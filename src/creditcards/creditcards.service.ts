@@ -16,4 +16,16 @@ export class CreditcardsService {
     async findAll(): Promise<Creditcards[]> {
         return this.creditCardModel.find().exec();
     }
+
+    async findOne(id: string): Promise<Creditcards> {
+        return this.creditCardModel.findOne({ _id: id });
+    }
+
+    async update(id: string, creditCardData: Creditcards): Promise<Creditcards> {
+        return this.creditCardModel.findByIdAndUpdate(id, creditCardData, { new: true }).exec();
+    }
+
+    async delete(id: string): Promise<Creditcards> {
+        return this.creditCardModel.findOneAndDelete({ id }).exec();
+    }
 }

@@ -18,6 +18,8 @@ import { LoansController } from './loans/loans.controller';
 import { NotificationsController } from './notifications/notifications.controller';
 import { MessagesController } from './messages/messages.controller';
 import { AdvisorsController } from './advisors/advisors.controller';
+import { BeneficiaryModule } from './beneficiary/beneficiary.module';
+import { BeneficiaryController } from './beneficiary/beneficiary.controller';
 
 @Module({
   imports: [DatabaseModule,
@@ -28,7 +30,8 @@ import { AdvisorsController } from './advisors/advisors.controller';
     NotificationsModule, 
     MessagesModule, 
     AdvisorsModule, 
-    TransfersModule
+    TransfersModule, 
+    BeneficiaryModule,
   ],
   controllers: [AppController, 
     ClientsController, 
@@ -38,7 +41,8 @@ import { AdvisorsController } from './advisors/advisors.controller';
     NotificationsController, 
     MessagesController, 
     AdvisorsController, 
-    TransfersController
+    TransfersController,
+    BeneficiaryController
   ],
   providers: [AppService],
 })

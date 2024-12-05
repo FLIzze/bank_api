@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { LoansService } from './loans.service';
 import { CreateLoansDto } from './dto/create-loans.dto';
 
@@ -11,23 +11,23 @@ export class LoansController {
         return this.LoansService.create(CreateLoansDto);
     }
 
-    @Get()
-    async findOne(loanId: string) {
+    @Get('loanId')
+    async findOne(@Param('loanId') loanId: string) {
         return this.LoansService.findOne(loanId);
     }
 
     @Get('client/:clientId')
-    async findAllByClient(clientId: string) {
+    async findAllByClient(@Param('clientId') clientId: string) {
         return this.LoansService.findAllByClient(clientId);
     }
 
     @Put(':loanId')
-    async update(loanId: string, @Body() CreateLoansDto: CreateLoansDto) {
+    async update(@Param('loanId') loanId: string, @Body() CreateLoansDto: CreateLoansDto) {
         return this.LoansService.update(loanId, CreateLoansDto);
     }
 
     @Delete(':loanId')
-    async delete(loanId: string) {
+    async delete(@Param('loanId') loanId: string) {
         return this.LoansService.delete(loanId);
     }
 }

@@ -34,6 +34,4 @@ export class BeneficiaryService {
     async delete(beneficiaryId: string): Promise<Beneficiary> {
         return this.beneficiaryModel.findOneAndDelete({ beneficiaryId }).exec();
     }
-
-    // Ajoutez d'autres méthodes spécifiques si nécessaire
 }

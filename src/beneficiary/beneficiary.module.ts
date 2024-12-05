@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { BeneficiaryService } from './beneficiary.service';
 import { BeneficiaryController } from './beneficiary.controller';
 import { DatabaseModule } from 'src/database/database.module';
+import { BeneficiaryProviders } from './beneficiary.providers';
 
 @Module({
   imports: [DatabaseModule],
-  providers: [BeneficiaryService],
+  providers: [BeneficiaryService, ...BeneficiaryProviders],
   controllers: [BeneficiaryController],
   exports: [BeneficiaryService],
 })

@@ -1,4 +1,4 @@
-export interface Beneficiary {
+export interface CreateBeneficiaryDto {
     readonly clientId: string;
     readonly name: string;
     readonly accountNumber: number;

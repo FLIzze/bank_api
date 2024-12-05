@@ -18,7 +18,7 @@ export class CreateAccountsDto {
 
     @ApiProperty({
         description: 'Account balance',
-        example: '1000'
+        example: '1'
     })
     @IsNumber()
     readonly balance: number;

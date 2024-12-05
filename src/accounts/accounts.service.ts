@@ -24,14 +24,18 @@ export class AccountsService {
     }
 
     async findOne(clientId: string): Promise<Accounts> {
-        return this.accountModel.findOne({clientId});
+        return this.accountModel.findOne({ clientId });
     }
 
-    async update(clientId: string, CreateAccountsDto: CreateAccountsDto):Promise<Accounts> {
-        return this.accountModel.findOneAndUpdate({clientId}, CreateAccountsDto, {new:true}).exec();
+    async update(clientId: string, createAccountDto: CreateAccountsDto): Promise<Accounts> {
+        return this.accountModel.findOneAndUpdate({ clientId }, createAccountDto, { new: true }).exec();
     }
 
-    async delete(clientId: string):Promise<Accounts> {
-        return this.accountModel.findOneAndDelete({clientId}).exec();
+    async delete(clientId: string): Promise<Accounts> {
+        return this.accountModel.findOneAndDelete({ clientId }).exec();
+    }
+
+    async findBalance(clientId: string): Promise<Accounts> {
+        return this.accountModel.findOne({ clientId }).select('balance').exec();
     }
 }

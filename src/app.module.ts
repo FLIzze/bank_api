@@ -22,7 +22,6 @@ import { BeneficiaryModule } from './beneficiary/beneficiary.module';
 import { BeneficiaryController } from './beneficiary/beneficiary.controller';
 
 @Module({
-<<<<<<< HEAD
   imports: [DatabaseModule,
     ClientsModule, 
     AccountsModule, 
@@ -46,29 +45,6 @@ import { BeneficiaryController } from './beneficiary/beneficiary.controller';
     BeneficiaryController
   ],
   providers: [AppService],
-=======
-    imports: [DatabaseModule,
-        ClientsModule, 
-        AccountsModule, 
-        CreditcardsModule, 
-        LoansModule, 
-        NotificationsModule, 
-        MessagesModule, 
-        AdvisorsModule, 
-        TransfersModule
-    ],
-    controllers: [AppController, 
-        ClientsController, 
-        AccountsController, 
-        CreditcardsController, 
-        LoansController, 
-        NotificationsController, 
-        MessagesController, 
-        AdvisorsController, 
-        TransfersController
-    ],
-    providers: [AppService],
->>>>>>> f3438ee (fixed dtos)
 })
 
 export class AppModule {}

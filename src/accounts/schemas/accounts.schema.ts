@@ -7,7 +7,7 @@ export const AccountsSchema = new Schema({
     creditcards: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Creditcards',
+            ref: 'CreditCards',
         },
     ],
 });

@@ -10,23 +10,28 @@ export class AccountsService {
     ) {}
 
     async create(createAccountDto: CreateAccountsDto): Promise<Accounts> {
+        const existingAccount = await this.accountModel.findOne({ accountNumber: createAccountDto.accountNumber }).exec();
+        if (existingAccount) {
+            throw new Error(`Account number ${createAccountDto.accountNumber} already exists.`);
+        }
+
         const createdAccount = new this.accountModel(createAccountDto);
         return createdAccount.save();
     }
 
     async findAll(): Promise<Accounts[]> {
-        return this.accountModel.find().populate('creditCards').exec();
+        return this.accountModel.find();
     }
 
     async findOne(clientId: string): Promise<Accounts> {
-        return this.accountModel.findOne({clientId}).populate('creditCards').exec();
+        return this.accountModel.findOne({clientId});
     }
 
     async update(clientId: string, CreateAccountsDto: CreateAccountsDto):Promise<Accounts> {
         return this.accountModel.findOneAndUpdate({clientId}, CreateAccountsDto, {new:true}).exec();
     }
 
-    async delete(clientId:string):Promise<Accounts> {
+    async delete(clientId: string):Promise<Accounts> {
         return this.accountModel.findOneAndDelete({clientId}).exec();
     }
 }

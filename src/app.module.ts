@@ -10,10 +10,12 @@ import { AccountsController } from './accounts/accounts.controller';
 import { CreditcardsController } from './creditcards/creditcards.controller';
 import { TransfersModule } from './transfers/transfers.module';
 import { TransfersController } from './transfers/transfers.controller';
+import { LoansModule } from './loans/loans.module';
+import { LoansController } from './loans/loans.controller';
 
 @Module({
-  imports: [DatabaseModule,ClientsModule, AccountsModule, CreditcardsModule, TransfersModule],
-  controllers: [AppController, ClientsController, AccountsController, CreditcardsController, TransfersController],
+  imports: [DatabaseModule,ClientsModule, AccountsModule, CreditcardsModule, TransfersModule, LoansModule],
+  controllers: [AppController, ClientsController, AccountsController, CreditcardsController, TransfersController, LoansController],
   providers: [AppService],
 })
 

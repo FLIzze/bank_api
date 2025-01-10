@@ -20,7 +20,8 @@ import { MessagesController } from './messages/messages.controller';
 import { AdvisorsController } from './advisors/advisors.controller';
 import { BeneficiaryModule } from './beneficiary/beneficiary.module';
 import { BeneficiaryController } from './beneficiary/beneficiary.controller';
-
+import { ConvertModule } from './convert/convert.module';
+import { ConvertController } from './convert/convert.controller';
 @Module({
   imports: [DatabaseModule,
     ClientsModule, 
@@ -32,6 +33,7 @@ import { BeneficiaryController } from './beneficiary/beneficiary.controller';
     AdvisorsModule, 
     TransfersModule, 
     BeneficiaryModule,
+    ConvertModule
   ],
   controllers: [AppController, 
     ClientsController, 
@@ -42,7 +44,8 @@ import { BeneficiaryController } from './beneficiary/beneficiary.controller';
     MessagesController, 
     AdvisorsController, 
     TransfersController,
-    BeneficiaryController
+    BeneficiaryController,
+    ConvertController
   ],
   providers: [AppService],
 })

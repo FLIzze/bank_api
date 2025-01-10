@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Post, Put, Param } from '@nestjs/common'
 import { AccountsService } from './accounts.service';
 import { CreateAccountsDto } from './dto/create-accounts.dto';
 import { Accounts } from './interfaces/accounts.interface';
+import { Public } from 'src/auth/public-strategy';
 
 @Controller('accounts')
 export class AccountsController {

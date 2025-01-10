@@ -34,4 +34,8 @@ export class ClientsService {
     async findAccounts(clientId:string):Promise<Clients> {
         return this.clientsModel.findOne({clientId}).populate('accounts').exec();
     }
+
+    async findOneBy(mail: string): Promise<Clients> {
+        return this.clientsModel.findOne({ mail }).exec();
+    }
 }

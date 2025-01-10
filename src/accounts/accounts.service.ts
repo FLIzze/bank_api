@@ -23,19 +23,23 @@ export class AccountsService {
         return this.accountModel.find();
     }
 
-    async findOne(clientId: string): Promise<Accounts> {
-        return this.accountModel.findOne({ clientId });
+    async findOne(accountNumber: string): Promise<Accounts> {
+        return this.accountModel.findOne({ accountNumber }).exec();
     }
 
-    async update(clientId: string, createAccountDto: CreateAccountsDto): Promise<Accounts> {
-        return this.accountModel.findOneAndUpdate({ clientId }, createAccountDto, { new: true }).exec();
+    async update(accountNumber: string, createAccountDto: CreateAccountsDto): Promise<Accounts> {
+        return this.accountModel.findOneAndUpdate({ accountNumber }, createAccountDto, { new: true }).exec();
     }
 
-    async delete(clientId: string): Promise<Accounts> {
-        return this.accountModel.findOneAndDelete({ clientId }).exec();
+    async delete(accountNumber: string): Promise<Accounts> {
+        return this.accountModel.findOneAndDelete({ accountNumber }).exec();
     }
 
-    async findBalance(clientId: string): Promise<Accounts> {
-        return this.accountModel.findOne({ clientId }).select('balance').exec();
+    async findBalance(accountNumber: string): Promise<Accounts> {
+        return this.accountModel.findOne({ accountNumber }).select('balance').exec();
+    }
+
+    async findAllByClientId(clientId: string): Promise<Accounts[]> {
+        return this.accountModel.find({ clientId }).exec();
     }
 }

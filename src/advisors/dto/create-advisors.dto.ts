@@ -25,7 +25,7 @@ export class CreateAdvisorsDto {
 
     @ApiProperty({
         description: 'Managed clients',
-        example: ['1', '2']
+        example: []
     })
     @IsArray()
     @IsString({ each: true })

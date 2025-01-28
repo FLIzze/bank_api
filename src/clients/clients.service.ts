@@ -20,19 +20,15 @@ export class ClientsService {
     }
 
     async findOne(clientId:string):Promise<Clients> {
-        return this.clientsModel.findOne({clientId}).exec();
+        return this.clientsModel.findOne({_id: clientId}).exec();
     }
 
     async update(clientId:string, CreateClientsDto:CreateClientsDto):Promise<Clients> {
-        return this.clientsModel.findOneAndUpdate({clientId}, CreateClientsDto, {new:true}).exec();
+        return this.clientsModel.findOneAndUpdate({_id: clientId}, CreateClientsDto, {new:true}).exec();
     }
 
     async delete(clientId:string):Promise<Clients> {
-        return this.clientsModel.findOneAndDelete({clientId}).exec();
-    }
-
-    async findAccounts(clientId:string):Promise<Clients> {
-        return this.clientsModel.findOne({clientId}).populate('accounts').exec();
+        return this.clientsModel.findOneAndDelete({_id: clientId}).exec();
     }
 
     async findOneBy(mail: string): Promise<Clients> {

@@ -40,10 +40,7 @@ export class AccountsController {
     @Public()
     @ApiOperation({ summary: 'Update an account' })
     @Put(':accountNumber')
-    async update(
-        @Param('accountNumber') accountNumber: string, 
-        @Body() CreateAccountsDto: CreateAccountsDto
-    ) {
+    async update(@Param('accountNumber') accountNumber: string, @Body() CreateAccountsDto: CreateAccountsDto) {
         return this.AccountsService.update(accountNumber, CreateAccountsDto);
     }
 

@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('BANK API')
-    .setDescription('The BANK API')
+    .setDescription('This is a BANK API, where you can manage your accounts, credit cards, loans, and more.')
     .setVersion('1.0')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);

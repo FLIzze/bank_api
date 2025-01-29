@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsString } from "class-validator";
 
-export class createNotificationsDto {
+export class CreateNotificationsDto {
     @ApiProperty({
         description: 'Client ID',
         example: '1'

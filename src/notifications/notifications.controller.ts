@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { Notifications } from './interfaces/notifications.interface';
 import { NotificationsService } from './notifications.service';
-import { createNotificationsDto } from './dto/create-notifications.dto';
+import { CreateNotificationsDto } from './dto/create-notifications.dto';
 import { Public } from 'src/auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
 
@@ -12,8 +11,8 @@ export class NotificationsController {
     @Public()
     @ApiOperation({ summary: 'Create a notification' })
     @Post()
-    async create(@Body() createNotificationsDto: createNotificationsDto) {
-        return this.NotificationsService.create(createNotificationsDto);
+    async create(@Body() CreateNotificationsDto: CreateNotificationsDto) {
+        return this.NotificationsService.create(CreateNotificationsDto);
     }
 
     @Public()
@@ -26,8 +25,8 @@ export class NotificationsController {
     @Public()
     @ApiOperation({ summary: 'Update a notification' })
     @Put(':notificationId')
-    async update(@Param('notificationId') notificationId: string, @Body() createNotificationsDto: createNotificationsDto) {
-        return this.NotificationsService.update(notificationId, createNotificationsDto);
+    async update(@Param('notificationId') notificationId: string, @Body() CreateNotificationsDto: CreateNotificationsDto) {
+        return this.NotificationsService.update(notificationId, CreateNotificationsDto);
     }
 
     @Public()

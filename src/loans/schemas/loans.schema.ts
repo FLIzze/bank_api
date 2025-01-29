@@ -1,7 +1,7 @@
-import { Schema } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 
 export const LoansSchema = new Schema({
-    clientId: { type: String, required: true },
+    clientId: { type: Types.ObjectId, required: true },
     amount: { type: Number, required: true },
     interestRate: { type: Number, required: true },
     startDate: { type: Date, required: true },

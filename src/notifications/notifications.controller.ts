@@ -19,25 +19,22 @@ export class NotificationsController {
     @Public()
     @ApiOperation({ summary: 'Find all notifications' })
     @Get(':clientId')
-    async findOne(@Param('clientId') clientId: string) {
-        return this.NotificationsService.findOne(clientId);
+    async findAllByClientId(@Param('clientId') clientId: string) {
+        return this.NotificationsService.findAllByClientId(clientId);
     }
 
     @Public()
     @ApiOperation({ summary: 'Update a notification' })
-    @Put(':clientId')
-    async update(
-        @Param('clientId') clientId: string,
-        @Body() notification: Notifications
-    ) {
-        return this.NotificationsService.update(clientId, notification);
+    @Put(':notificationId')
+    async update(@Param('notificationId') notificationId: string, @Body() createNotificationsDto: createNotificationsDto) {
+        return this.NotificationsService.update(notificationId, createNotificationsDto);
     }
 
     @Public()
     @ApiOperation({ summary: 'Delete a notification' })
-    @Delete(':clientId')
-    async delete(@Param('clientId') clientId: string) {
-        return this.NotificationsService.delete(clientId);
+    @Delete(':notificationId')
+    async delete(@Param('notificationId') notificationId: string) {
+        return this.NotificationsService.delete(notificationId);
     }
 
 }

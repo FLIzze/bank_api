@@ -16,28 +16,28 @@ export class LoansController {
     }
 
     @Public()
-    @ApiOperation({ summary: 'Find all loans' })
-    @Get('loanId')
+    @ApiOperation({ summary: 'Find loans by id' })
+    @Get(':loanId')
     async findOne(@Param('loanId') loanId: string) {
         return this.LoansService.findOne(loanId);
     }
 
     @Public()
-    @ApiOperation({ summary: 'Find all loans' })
+    @ApiOperation({ summary: 'Find all loans by clientId' })
     @Get('client/:clientId')
     async findAllByClient(@Param('clientId') clientId: string) {
         return this.LoansService.findAllByClient(clientId);
     }
 
     @Public()
-    @ApiOperation({ summary: 'Find all loans' })
+    @ApiOperation({ summary: 'Update a loans' })
     @Put(':loanId')
     async update(@Param('loanId') loanId: string, @Body() CreateLoansDto: CreateLoansDto) {
         return this.LoansService.update(loanId, CreateLoansDto);
     }
 
     @Public()
-    @ApiOperation({ summary: 'Find all loans' })
+    @ApiOperation({ summary: 'Delete a loans' })
     @Delete(':loanId')
     async delete(@Param('loanId') loanId: string) {
         return this.LoansService.delete(loanId);

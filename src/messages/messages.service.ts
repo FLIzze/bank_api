@@ -26,4 +26,8 @@ export class MessagesService {
     async update(messageId: string, CreateMessagesDto: CreateMessagesDto): Promise<Messages> {
         return this.messagesModel.findByIdAndUpdate(messageId, CreateMessagesDto, { new: true }).exec();
     }
+
+    async delete(messageId: string): Promise<Messages> {
+        return this.messagesModel.findOneAndDelete({ _id: messageId }).exec();
+    }
 }

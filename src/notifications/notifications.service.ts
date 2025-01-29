@@ -9,8 +9,8 @@ export class NotificationsService {
     ) {}
 
     async create(notification: Notifications): Promise<Notifications> {
-        const createdNotification = new this.notificationModel(notification);
-        return createdNotification.save();
+        const newNotification = new this.notificationModel(notification);
+        return newNotification.save();
     }
 
     async findOne(clientId: string): Promise<Notifications> {

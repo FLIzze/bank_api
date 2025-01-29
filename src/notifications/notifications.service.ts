@@ -20,4 +20,8 @@ export class NotificationsService {
     async update(clientId: string, notification: Notifications): Promise<Notifications> {
         return this.notificationModel.findOneAndUpdate({ clientId }, notification, { new: true }).exec();
     }
+
+    async delete(clientId: string): Promise<Notifications> {
+        return this.notificationModel.findOneAndDelete({ clientId }).exec();
+    }
 }

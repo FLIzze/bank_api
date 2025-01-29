@@ -6,7 +6,6 @@ import { Public } from "./public-strategy";
 import { CreateClientsDto } from "src/clients/dto/create-clients.dto";
 
 @Controller("auth")
-@ApiTags("auth")
 export class AuthController {
   constructor(private authService: AuthService) {}
 

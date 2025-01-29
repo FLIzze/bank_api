@@ -22,9 +22,11 @@ export class TransfersService {
     return this.transfersModel.findById(transferId).exec();
   }
 
-  async findByAccountNumber(accountNumber: string): Promise<Transfers[]> {
-    return this.transfersModel.find({
-      $or: [{ fromAccount: accountNumber }, { toAccount: accountNumber }]
-    }).exec();
+  async findBySenderAccountNumber(senderAccount: string): Promise<Transfers[]> {
+    return this.transfersModel.find({ senderAccount }).exec();
+  }
+
+  async findByReceiverAccountNumber(receiverAccount: string): Promise<Transfers[]> {
+    return this.transfersModel.find({ receiverAccount }).exec();
   }
 }

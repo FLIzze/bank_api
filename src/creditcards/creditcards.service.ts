@@ -9,8 +9,7 @@ export class CreditcardsService {
     ) {}
 
     async create(creditCardData: Creditcards): Promise<Creditcards> {
-        const newCard = new this.creditCardModel(creditCardData);
-        return newCard.save();
+        return this.creditCardModel.create(creditCardData);
     }
 
     async findAll(): Promise<Creditcards[]> {

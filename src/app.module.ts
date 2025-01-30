@@ -22,7 +22,8 @@ import { BeneficiaryModule } from './beneficiary/beneficiary.module';
 import { BeneficiaryController } from './beneficiary/beneficiary.controller';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
-
+import { ConvertModule } from './convert/convert.module';
+import { ConvertController } from './convert/convert.controller';
 @Module({
   imports: [DatabaseModule,
     ClientsModule, 
@@ -35,7 +36,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     TransfersModule, 
     BeneficiaryModule, 
     AuthModule,
-    MongooseModule.forRoot(process.env.DB_URI)
+    MongooseModule.forRoot(process.env.DB_URI),
+    ConvertModule
   ],
   controllers: [AppController, 
     ClientsController, 
@@ -46,7 +48,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     MessagesController, 
     AdvisorsController, 
     TransfersController,
-    BeneficiaryController
+    BeneficiaryController,
+    ConvertController
   ],
   providers: [AppService],
 })

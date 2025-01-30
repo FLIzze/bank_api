@@ -13,8 +13,7 @@ export class AdvisorsService {
     ) {}
 
     async create(createAdvisorDto: Advisors): Promise<Advisors> {
-        const createdAdvisor = new this.advisorModel(createAdvisorDto);
-        return createdAdvisor.save();
+        return this.advisorModel.create(createAdvisorDto);
     }
 
     async findAll(): Promise<Advisors[]> {

@@ -9,6 +9,25 @@ Présentation des tables de la base de données
 ![alt text](image.png)
 
 ## Prérequis
+=======
+#### Globales
+- [x] Clients
+- [x] Bénéficiaires
+- [x] Comptes 
+- [x] Virements
+- [x] Filtres
+- [x] Messagerie
+- [x] [ConvLar](##2.ConvLar)
+
+#### Clients
+- [x] Login
+- [x] Logout
+- [x] Register
+
+#### Models
+- [x] Notifications
+- [x] Cartes bancaires
+- [x] Prêts
 
 Avant d'installer et d'exécuter ce projet, assurez-vous d'avoir installé :
 - [Node.js](https://nodejs.org/) (version 16+ recommandée)

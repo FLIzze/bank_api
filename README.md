@@ -5,23 +5,23 @@
 ## Routes
 
 #### Globales
-- [ ] Clients
-- [ ] Bénéficiaires
-- [ ] Comptes 
-- [ ] Virements
-- [ ] Filtres
-- [ ] Messagerie
-- [ ] [ConvLar](##2.ConvLar)
+- [x] Clients
+- [x] Bénéficiaires
+- [x] Comptes 
+- [x] Virements
+- [x] Filtres
+- [x] Messagerie
+- [x] [ConvLar](##2.ConvLar)
 
 #### Clients
-- [ ] Login
-- [ ] Logout
-- [ ] Register
+- [x] Login
+- [x] Logout
+- [x] Register
 
 #### Models
-- [ ] Notifications
-- [ ] Cartes bancaires
-- [ ] Prêts
+- [x] Notifications
+- [x] Cartes bancaires
+- [x] Prêts
 
 ## 2.ConvLar
 

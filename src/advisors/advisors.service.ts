@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { Advisors } from './interfaces/advisors.interface';
 import { CreateAdvisorsDto } from './dto/create-advisors.dto';
-import { ClientsService } from 'src/clients/clients.service';
+import { ClientsService } from '../clients/clients.service';
 
 @Injectable()
 export class AdvisorsService {
@@ -13,8 +13,7 @@ export class AdvisorsService {
     ) {}
 
     async create(createAdvisorDto: Advisors): Promise<Advisors> {
-        const createdAdvisor = new this.advisorModel(createAdvisorDto);
-        return createdAdvisor.save();
+        return this.advisorModel.create(createAdvisorDto);
     }
 
     async findAll(): Promise<Advisors[]> {

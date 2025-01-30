@@ -2,7 +2,7 @@ import {Controller, Body, Get, Post, Param, Put, Delete} from '@nestjs/common';
 import { CreateClientsDto } from './dto/create-clients.dto';
 import { ClientsService } from './clients.service';
 import { Clients } from './interfaces/clients.interfaces';
-import { Public } from 'src/auth/public-strategy';
+import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('clients')

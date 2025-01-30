@@ -11,8 +11,7 @@ export class BeneficiaryService {
     ) {}
 
     async create(createBeneficiaryDto: CreateBeneficiaryDto): Promise<Beneficiary> {
-        const createdBeneficiary = new this.beneficiaryModel(createBeneficiaryDto);
-        return createdBeneficiary.save();
+        return this.beneficiaryModel.create(createBeneficiaryDto);
     }
 
     async findAll(): Promise<Beneficiary[]> {

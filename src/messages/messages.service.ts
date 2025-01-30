@@ -11,8 +11,7 @@ export class MessagesService {
     ) {}
 
     async create(CreateMessagesDto:CreateMessagesDto):Promise<Messages> {
-        const newMessage = new this.messagesModel(CreateMessagesDto);
-        return newMessage.save();
+        return this.messagesModel.create(CreateMessagesDto)
     }
 
     async findByClient(clientId: string): Promise<Messages[]> {

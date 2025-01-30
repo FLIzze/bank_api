@@ -10,8 +10,7 @@ export class LoansService {
     ) {}
 
     async create(loanData: Loans): Promise<Loans> {
-        const newLoan = new this.loanModel(loanData);
-        return newLoan.save();
+        return this.loanModel.create(loanData)
     }
 
     async findOne(loanId: string): Promise<Loans> {

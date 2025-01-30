@@ -15,8 +15,7 @@ export class AccountsService {
             throw new Error(`Account number ${createAccountDto.accountNumber} already exists.`);
         }
 
-        const createdAccount = new this.accountModel(createAccountDto);
-        return createdAccount.save();
+        return this.accountModel.create(createAccountDto);
     }
 
     async findAll(): Promise<Accounts[]> {

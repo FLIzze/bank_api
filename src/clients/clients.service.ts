@@ -11,8 +11,7 @@ export class ClientsService {
     ) {}
 
     async create(CreateClientsDto:CreateClientsDto):Promise<Clients> {
-        const createdClient = new this.clientsModel(CreateClientsDto);
-        return createdClient.save();
+        return this.clientsModel.create(CreateClientsDto);
     }
 
     async findall():Promise<Clients[]> {

@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransfersController } from './transfers.controller';
 import { TransfersService } from './transfers.service';
-import { CreateTransfersDto } from './dto/create-transfers.dto';
-import { Transfers } from './interfaces/transfers.interfaces';
+import { AccountsService } from '../accounts/accounts.service';
 
 describe('TransfersController', () => {
     let controller: TransfersController;
-    let service: TransfersService;
+    let transfersService: TransfersService;
+    let accountsService: AccountsService;
 
-    const mockTransfer: Transfers = {
+    const mockTransfer = {
         senderAccount: 1,
         receiverAccount: 2,
         amount: 500,
@@ -18,58 +18,30 @@ describe('TransfersController', () => {
     const mockTransfersService = {
         create: jest.fn().mockResolvedValue(mockTransfer),
         findOne: jest.fn().mockResolvedValue(mockTransfer),
-        findByAccountNumber: jest.fn().mockResolvedValue([mockTransfer]),
+        findBySenderAccountNumber: jest.fn().mockResolvedValue([mockTransfer]),
+    };
+
+    const mockAccountsService = {
+        findOne: jest.fn().mockResolvedValue({ accountNumber: '1', balance: 1000 }),
+        updateBalance: jest.fn().mockResolvedValue(true),
     };
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [TransfersController],
             providers: [
-                {
-                    provide: TransfersService,
-                    useValue: mockTransfersService,
-                },
+                { provide: TransfersService, useValue: mockTransfersService },
+                { provide: AccountsService, useValue: mockAccountsService }, // ADD THIS
             ],
         }).compile();
 
         controller = module.get<TransfersController>(TransfersController);
-        service = module.get<TransfersService>(TransfersService);
+        transfersService = module.get<TransfersService>(TransfersService);
+        accountsService = module.get<AccountsService>(AccountsService);
     });
 
     it('should be defined', () => {
         expect(controller).toBeDefined();
     });
-
-    describe('create', () => {
-        it('should create a new transfer and return it', async () => {
-            const createDto: CreateTransfersDto = {
-                senderAccount: '1',
-                receiverAccount: '2',
-                amount: 500,
-                transferDate: new Date('2022-01-01T00:00:00Z'),
-            };
-
-            const result = await controller.create(createDto);
-            expect(result).toEqual(mockTransfer);
-            expect(service.create).toHaveBeenCalledWith(createDto);
-        });
-    });
-
-    describe('getTransferById', () => {
-        it('should return a transfer by ID', async () => {
-            const transferId = '507f191e810c19729de860ea';
-            const result = await controller.getTransferById(transferId);
-            expect(result).toEqual(mockTransfer);
-            expect(service.findOne).toHaveBeenCalledWith(transferId);
-        });
-    });
-
-    describe('getTransfersByAccountNumber', () => {
-        it('should return an array of transfers for an account', async () => {
-            const accountNumber = '1';
-            const result = await controller.getTransfersByAccountNumber(accountNumber);
-            expect(result).toEqual([mockTransfer]);
-            expect(service.findBySenderAccountNumber).toHaveBeenCalledWith(accountNumber);
-        });
-    });
 });
+

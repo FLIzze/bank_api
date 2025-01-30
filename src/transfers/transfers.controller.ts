@@ -4,7 +4,7 @@ import { Transfers } from './interfaces/transfers.interfaces';
 import { CreateTransfersDto } from './dto/create-transfers.dto';
 import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
-import { AccountsService } from 'src/accounts/accounts.service';
+import { AccountsService } from '../accounts/accounts.service';
 
 @Controller('transfers')
 export class TransfersController {

@@ -2,7 +2,6 @@ import { Model } from "mongoose";
 import { AccountsService } from "./accounts.service"
 import { Accounts } from "./interfaces/accounts.interface";
 import { Test, TestingModule } from "@nestjs/testing";
-import { CreateAccountsDto } from "./dto/create-accounts.dto";
 
 describe('AccountsService', () => {
     let service: AccountsService;
@@ -44,7 +43,7 @@ describe('AccountsService', () => {
     });
 
     it('should create account', async () => {
-        const accountDto:CreateAccountsDto = {
+        const accountDto = {
             clientId: "6780df8b3f630404b800ca92",
             accountNumber: 1234567897,
             balance: 1234567897,

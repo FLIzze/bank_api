@@ -3,15 +3,15 @@ import { ConvertService } from './convert.service';
 import { ConvertDto } from './dto/convert.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
-@ApiTags('Conversion de Monnaie')
+@ApiTags('Convert')
 @Controller('api/convert')
 export class ConvertController {
   constructor(private readonly convertService: ConvertService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Convertir une devise en une autre' })
+  @ApiOperation({ summary: 'Convert one currency to another' })
   @ApiResponse({ status: 200, description: 'Conversion réussie.' })
-  @ApiResponse({ status: 400, description: 'Requête invalide.' })
+  @ApiResponse({ status: 400, description: 'Invalid request.' })
   async convert(@Body() convertDto: ConvertDto): Promise<{ result: number }> {
     const result = await this.convertService.convertCurrency(convertDto);
     return { result };

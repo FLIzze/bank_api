@@ -108,6 +108,6 @@ describe('CreditcardsService', () => {
         const result = await service.delete(cardId);
 
         expect(result).toEqual(mockCreditCard);
-        expect(mockCreditCardModel.findOneAndDelete).toHaveBeenCalledWith({ id: cardId });
+        expect(mockCreditCardModel.findOneAndDelete).toHaveBeenCalledWith({ _id: cardId });
     });
 });

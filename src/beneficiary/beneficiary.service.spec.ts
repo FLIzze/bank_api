@@ -106,7 +106,7 @@ describe('BeneficiaryService', () => {
 
         const result = await service.findOne(beneficiaryId);
         expect(result).toEqual(mockBeneficiary);
-        expect(model.findOne).toHaveBeenCalledWith({ beneficiaryId: beneficiaryId });
+        expect(model.findOne).toHaveBeenCalledWith({ _id: beneficiaryId });
     })
 
     it('should update a client', async () => {
@@ -133,7 +133,7 @@ describe('BeneficiaryService', () => {
 
         expect(result).toEqual(updatedBeneficiary);
         expect(model.findOneAndUpdate).toHaveBeenCalledWith(
-            { beneficiaryId: beneficiaryId },
+            { _id: beneficiaryId },
             updateDto,
             { new: true }
         )
@@ -157,6 +157,6 @@ describe('BeneficiaryService', () => {
 
         const result = await service.delete(beneficiaryId);
         expect(result).toEqual(mockBeneficiary);
-        expect(model.findOneAndDelete).toHaveBeenCalledWith({ beneficiaryId: beneficiaryId });
+        expect(model.findOneAndDelete).toHaveBeenCalledWith({ _id: beneficiaryId });
     })
 });

@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { NotificationsService } from './notifications.service';
 import { Model } from 'mongoose';
 import { Notifications } from './interfaces/notifications.interface';
-import { createNotificationsDto } from './dto/create-notifications.dto';
 
 describe('NotificationsService', () => {
     let service: NotificationsService;
@@ -19,7 +18,7 @@ describe('NotificationsService', () => {
 
     const mockNotificationModel = {
         create: jest.fn().mockResolvedValue(mockNotification),
-        findOne: jest.fn().mockResolvedValue(mockNotification),
+        find: jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue([mockNotification]) }), // Correction ici
         findOneAndUpdate: jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue(mockNotification) }),
     };
 
@@ -43,7 +42,7 @@ describe('NotificationsService', () => {
     });
 
     it('should create a notification', async () => {
-        const notificationData: createNotificationsDto = {
+        const notificationData = {
             clientId: '1',
             title: 'New message',
             content: 'You have a new message from your advisor.',
@@ -58,18 +57,18 @@ describe('NotificationsService', () => {
         expect(mockNotificationModel.create).toHaveBeenCalledWith(notificationData);
     });
 
-    it('should find a notification by client ID', async () => {
+    it('should find all notifications by client ID', async () => {
         const clientId = '1';
 
-        const result = await service.findOne(clientId);
+        const result = await service.findAllByClientId(clientId);
 
-        expect(result).toEqual(mockNotification);
-        expect(mockNotificationModel.findOne).toHaveBeenCalledWith({ clientId });
+        expect(result).toEqual([mockNotification]);
+        expect(mockNotificationModel.find).toHaveBeenCalledWith({ clientId });
     });
 
     it('should update a notification by client ID', async () => {
         const clientId = '1';
-        const updatedNotificationData: createNotificationsDto = {
+        const updatedNotificationData = {
             clientId: '1',
             title: 'Updated Notification',
             content: 'This is an updated notification.',
@@ -88,7 +87,7 @@ describe('NotificationsService', () => {
 
         expect(result).toEqual(updatedNotification);
         expect(mockNotificationModel.findOneAndUpdate).toHaveBeenCalledWith(
-            { clientId },
+            { _id: clientId },
             updatedNotificationData,
             { new: true }
         );

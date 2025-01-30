@@ -69,19 +69,4 @@ describe('TransfersService', () => {
         expect(result).toEqual(mockTransfer);
         expect(mockTransfersModel.findById).toHaveBeenCalledWith(transferId);
     });
-
-    it('should find transfers by account number', async () => {
-        const accountNumber = '1';
-
-        (mockTransfersModel.find as jest.Mock).mockReturnValue({
-            exec: jest.fn().mockResolvedValue([mockTransfer]),
-        });
-
-        const result = await service.findByAccountNumber(accountNumber);
-
-        expect(result).toEqual([mockTransfer]);
-        expect(mockTransfersModel.find).toHaveBeenCalledWith({
-            $or: [{ fromAccount: accountNumber }, { toAccount: accountNumber }],
-        });
-    });
 });

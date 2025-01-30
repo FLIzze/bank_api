@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AccountsController } from './accounts.controller';
 import { AccountsService } from './accounts.service';
-import { CreateAccountsDto } from './dto/create-accounts.dto';
 import { Accounts } from './interfaces/accounts.interface';
 
 describe('AccountsController', () => {
@@ -46,7 +45,7 @@ describe('AccountsController', () => {
 
     describe('create', () => {
         it('should create a new account and return it', async () => {
-            const createDto: CreateAccountsDto = {
+            const createDto = {
                 clientId: "6780df8b3f630404b800ca92",
                 accountNumber: 1234567897,
                 balance: 1234567897,
@@ -88,7 +87,7 @@ describe('AccountsController', () => {
     describe('update', () => {
         it('should update an account and return the updated account', async () => {
             const accountNumber = '1234567897';
-            const updateDto: CreateAccountsDto = {
+            const updateDto = {
                 clientId: "6780df8b3f630404b800ca92",
                 accountNumber: 1234567897,
                 balance: 5000,

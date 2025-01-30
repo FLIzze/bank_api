@@ -69,7 +69,7 @@ describe('TransfersController', () => {
             const accountNumber = '1';
             const result = await controller.getTransfersByAccountNumber(accountNumber);
             expect(result).toEqual([mockTransfer]);
-            expect(service.findByAccountNumber).toHaveBeenCalledWith(accountNumber);
+            expect(service.findBySenderAccountNumber).toHaveBeenCalledWith(accountNumber);
         });
     });
 });

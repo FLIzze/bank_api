@@ -2,7 +2,7 @@ import {Controller, Body, Get, Post, Param, Put, Delete} from '@nestjs/common';
 import { CreateBeneficiaryDto } from './dto/create-beneficiary.dto';
 import { BeneficiaryService } from './beneficiary.service';
 import { Beneficiary } from './interfaces/beneficiary.interfaces';
-import { Public } from 'src/auth/public-strategy';
+import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('beneficiary')

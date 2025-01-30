@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { NotificationsService } from './notifications.service';
 import { Model } from 'mongoose';
 import { Notifications } from './interfaces/notifications.interface';
-import { createNotificationsDto } from './dto/create-notifications.dto';
+import { CreateNotificationsDto } from './dto/create-notifications.dto';
 
 describe('NotificationsService', () => {
     let service: NotificationsService;
@@ -19,7 +19,7 @@ describe('NotificationsService', () => {
 
     const mockNotificationModel = {
         create: jest.fn().mockResolvedValue(mockNotification),
-        findOne: jest.fn().mockResolvedValue(mockNotification),
+        findAllByClientId: jest.fn().mockResolvedValue(mockNotification),
         findOneAndUpdate: jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue(mockNotification) }),
     };
 
@@ -43,7 +43,7 @@ describe('NotificationsService', () => {
     });
 
     it('should create a notification', async () => {
-        const notificationData: createNotificationsDto = {
+        const notificationData: CreateNotificationsDto = {
             clientId: '1',
             title: 'New message',
             content: 'You have a new message from your advisor.',
@@ -61,16 +61,16 @@ describe('NotificationsService', () => {
     it('should find a notification by client ID', async () => {
         const clientId = '1';
 
-        const result = await service.findOne(clientId);
+        const result = await service.findAllByClientId(clientId);
 
         expect(result).toEqual(mockNotification);
-        expect(mockNotificationModel.findOne).toHaveBeenCalledWith({ clientId });
+        expect(mockNotificationModel.findAllByClientId).toHaveBeenCalledWith({ clientId });
     });
 
     it('should update a notification by client ID', async () => {
-        const clientId = '1';
-        const updatedNotificationData: createNotificationsDto = {
-            clientId: '1',
+        const notificationId = '507f191e810c19729de860ea';
+        const updatedNotificationData = {
+            clientId:  '1',
             title: 'Updated Notification',
             content: 'This is an updated notification.',
             type: 'Alert',
@@ -81,14 +81,15 @@ describe('NotificationsService', () => {
         const updatedNotification = { _id: '507f191e810c19729de860ea', ...updatedNotificationData };
 
         (mockNotificationModel.findOneAndUpdate as jest.Mock).mockReturnValue({
-            exec: jest.fn().mockResolvedValue(updatedNotification),
+            exec: jest.fn().mockResolvedValue(updatedNotificationData),
         });
 
-        const result = await service.update(clientId, updatedNotificationData);
+        const result = await service.update(notificationId, updatedNotificationData);
 
         expect(result).toEqual(updatedNotification);
+        console.log("ICI LA NOTIFICATION\n-----------------------------------------------------------------\n", updatedNotification);
         expect(mockNotificationModel.findOneAndUpdate).toHaveBeenCalledWith(
-            { clientId },
+            notificationId,
             updatedNotificationData,
             { new: true }
         );

@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CreditcardsService } from './creditcards.service';
 import { CreateCreditcardsDto } from './dto/create-creditcards.dto';
-import { Public } from 'src/auth/public-strategy';
+import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('creditcards')

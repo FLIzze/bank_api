@@ -77,7 +77,7 @@ describe('TransfersService', () => {
             exec: jest.fn().mockResolvedValue([mockTransfer]),
         });
 
-        const result = await service.findByAccountNumber(accountNumber);
+        const result = await service.findBySenderAccountNumber(accountNumber);
 
         expect(result).toEqual([mockTransfer]);
         expect(mockTransfersModel.find).toHaveBeenCalledWith({

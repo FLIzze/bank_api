@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotificationsController } from './notifications.controller';
 import { NotificationsService } from './notifications.service';
-import { createNotificationsDto } from './dto/create-notifications.dto';
+import { CreateNotificationsDto } from './dto/create-notifications.dto';
 import { Notifications } from './interfaces/notifications.interface';
 
 describe('NotificationsController', () => {
@@ -19,7 +19,7 @@ describe('NotificationsController', () => {
 
     const mockNotificationsService = {
         create: jest.fn().mockResolvedValue(mockNotification),
-        findOne: jest.fn().mockResolvedValue(mockNotification),
+        findAllByClientId: jest.fn().mockResolvedValue(mockNotification),
         update: jest.fn().mockResolvedValue({ ...mockNotification, isRead: true }),
     };
 
@@ -44,7 +44,7 @@ describe('NotificationsController', () => {
 
     describe('create', () => {
         it('should create a new notification and return it', async () => {
-            const createDto: createNotificationsDto = {
+            const createDto: CreateNotificationsDto = {
                 clientId: '1',
                 title: 'New message',
                 content: 'You have a new message from your advisor.',
@@ -59,12 +59,12 @@ describe('NotificationsController', () => {
         });
     });
 
-    describe('findOne', () => {
+    describe('findAllByClientId', () => {
         it('should return a notification by client ID', async () => {
             const clientId = '1';
-            const result = await controller.findOne(clientId);
+            const result = await controller.findAllByClientId(clientId);
             expect(result).toEqual(mockNotification);
-            expect(service.findOne).toHaveBeenCalledWith(clientId);
+            expect(service.findAllByClientId).toHaveBeenCalledWith(clientId);
         });
     });
 

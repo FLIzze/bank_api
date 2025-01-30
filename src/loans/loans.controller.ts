@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { LoansService } from './loans.service';
 import { CreateLoansDto } from './dto/create-loans.dto';
 import { ApiOperation } from '@nestjs/swagger';
-import { Public } from 'src/auth/public-strategy';
+import { Public } from '../auth/public-strategy';
 
 @Controller('loans')
 export class LoansController {

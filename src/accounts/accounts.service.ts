@@ -30,6 +30,10 @@ export class AccountsService {
         return this.accountModel.findOneAndUpdate({ accountNumber }, createAccountDto, { new: true }).exec();
     }
 
+    async updateBalance(accountNumber: number, amount: number): Promise<Accounts> {
+        return this.accountModel.findOneAndUpdate({ accountNumber }, {balance: amount}, { new: true }).exec();
+    }
+
     async delete(accountNumber: string): Promise<Accounts> {
         return this.accountModel.findOneAndDelete({ accountNumber }).exec();
     }

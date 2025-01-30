@@ -9,14 +9,18 @@ export class NotificationsService {
     ) {}
 
     async create(notification: Notifications): Promise<Notifications> {
-        return this.notificationModel.create(notification)
+        return this.notificationModel.create(notification);
     }
 
-    async findOne(clientId: string): Promise<Notifications> {
-        return this.notificationModel.findOne({ clientId });
+    async findAllByClientId(clientId: string): Promise<Notifications[]> {
+        return this.notificationModel.find({ clientId }).exec();
     }
 
-    async update(clientId: string, notification: Notifications): Promise<Notifications> {
-        return this.notificationModel.findOneAndUpdate({ clientId }, notification, { new: true }).exec();
+    async update(notificationId: string, notification: Notifications): Promise<Notifications> {
+        return this.notificationModel.findOneAndUpdate({ _id: notificationId }, notification, { new: true }).exec();
+    }
+
+    async delete(notificationId: string): Promise<Notifications> {
+        return this.notificationModel.findOneAndDelete({ _id: notificationId }).exec();
     }
 }

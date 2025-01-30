@@ -1,7 +1,9 @@
-import { Schema } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 
 export const MessagesSchema = new Schema({
-    accountId: { type: String, required: true },
-    message: { type: String, required: true },
-    status: { type: String, required: true },
+    clientId: { type: Types.ObjectId, ref: 'Clients', required: true },
+    advisorId: { type: Types.ObjectId, ref: 'Advisors', required: true },
+    content: { type: String, required: true },
+    sentDate: { type: Date, required: true, default: Date.now },
+    isRead: { type: Boolean, required: true, default: false }
 });

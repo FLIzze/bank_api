@@ -19,18 +19,18 @@ export class BeneficiaryService {
     }
 
     async findOne(beneficiaryId: string): Promise<Beneficiary> {
-        return this.beneficiaryModel.findOne({ beneficiaryId }).exec();
+        return this.beneficiaryModel.findOne({ _id: beneficiaryId }).exec();
     }
 
     async update(beneficiaryId: string, createBeneficiaryDto: CreateBeneficiaryDto): Promise<Beneficiary> {
         return this.beneficiaryModel.findOneAndUpdate(
-            { beneficiaryId },
+            { _id: beneficiaryId },
             createBeneficiaryDto,
             { new: true }
         ).exec();
     }
 
     async delete(beneficiaryId: string): Promise<Beneficiary> {
-        return this.beneficiaryModel.findOneAndDelete({ beneficiaryId }).exec();
+        return this.beneficiaryModel.findOneAndDelete({ _id: beneficiaryId }).exec();
     }
 }

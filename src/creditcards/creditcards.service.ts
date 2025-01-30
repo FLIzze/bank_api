@@ -25,6 +25,6 @@ export class CreditcardsService {
     }
 
     async delete(id: string): Promise<Creditcards> {
-        return this.creditCardModel.findOneAndDelete({ id }).exec();
+        return this.creditCardModel.findOneAndDelete({ _id: id }).exec();
     }
 }

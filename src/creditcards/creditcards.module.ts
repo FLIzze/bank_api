@@ -6,8 +6,8 @@ import { DatabaseModule } from '../database/database.module';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [CreditcardsController],
   providers: [CreditcardsService, ...CreditcardsProviders],
+  controllers: [CreditcardsController],
   exports: [CreditcardsService],
 })
 export class CreditcardsModule {}

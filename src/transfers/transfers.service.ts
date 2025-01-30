@@ -10,8 +10,7 @@ export class TransfersService {
   ) {}
 
   async create(createTransferDto: CreateTransfersDto): Promise<Transfers> {
-    const createdTransfer = new this.transfersModel(createTransferDto);
-    return createdTransfer.save();
+    return this.transfersModel.create(createTransferDto)
   }
 
   async findAll(): Promise<Transfers[]> {

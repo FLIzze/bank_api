@@ -2,6 +2,8 @@
 
 Cette API bancaire est construite avec NestJS et utilise MongoDB comme base de données.
 
+Pour set up l'API de conversion de monnaie https://github.com/rthimoth/Convlar.
+
 ## DiagramDB
 
 Présentation des tables de la base de données

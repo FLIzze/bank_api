@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Post, Put, Param } from '@nestjs/common';
+import { UseGuards, Body, Controller, Delete, Get, Post, Put, Param } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
 import { CreateAccountsDto } from './dto/create-accounts.dto';
 import { Accounts } from './interfaces/accounts.interface';
 import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('accounts')
 export class AccountsController {
@@ -37,21 +38,21 @@ export class AccountsController {
         return this.AccountsService.findAllByClientId(clientId);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Update an account' })
     @Put(':accountNumber')
     async update(@Param('accountNumber') accountNumber: string, @Body() CreateAccountsDto: CreateAccountsDto) {
         return this.AccountsService.update(accountNumber, CreateAccountsDto);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Delete an account' })
     @Delete(':accountNumber')
     async delete(@Param('accountNumber') accountNumber: string) {
         return this.AccountsService.delete(accountNumber);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Get account balance by account number' })
     @Get(':accountNumber/balance')
     async findBalance(@Param('accountNumber') accountNumber: string) {

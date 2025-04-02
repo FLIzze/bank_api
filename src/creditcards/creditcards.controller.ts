@@ -1,14 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { UseGuards, Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CreditcardsService } from './creditcards.service';
 import { CreateCreditcardsDto } from './dto/create-creditcards.dto';
 import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('creditcards')
 export class CreditcardsController {
     constructor(private readonly CreditcardsService:CreditcardsService) {}
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Create a new credit card' })
     @Post()
     async create(@Body() CreateCreditcardsDto:CreateCreditcardsDto) {
@@ -29,14 +30,14 @@ export class CreditcardsController {
         return this.CreditcardsService.findOne(creditCardId);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Update a credit card' })
     @Put(':creditCardId')
     async update(@Param('creditCardId') creditCardId:string, @Body() CreateCreditcardsDto:CreateCreditcardsDto) {
         return this.CreditcardsService.update(creditCardId, CreateCreditcardsDto);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Delete a credit card' })
     @Delete(':creditCardId')
     async delete(@Param('creditCardId') creditCardId:string) {

@@ -1,14 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { UseGuards, Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { CreateMessagesDto } from './dto/create-messages.dto';
-import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
+import { Public } from '../auth/public-strategy';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('messages')
 export class MessagesController {
     constructor(private readonly MessagesService: MessagesService) {}
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Create a new message' })
     @Post()
     async create(@Body() CreateMessagesDto:CreateMessagesDto) {
@@ -29,14 +30,14 @@ export class MessagesController {
         return this.MessagesService.findByAdvisor(advisorId);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Update a message' })
     @Put(':messageId')
     async update(@Param('messageId') messageId: string, @Body() CreateMessagesDto: CreateMessagesDto) {
         return this.MessagesService.update(messageId, CreateMessagesDto);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Delete a message' })
     @Delete(':messageId')
     async delete(@Param('messageId') messageId: string) {

@@ -1,10 +1,11 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
+import { UseGuards, Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
 import { TransfersService } from './transfers.service';
 import { Transfers } from './interfaces/transfers.interfaces';
 import { CreateTransfersDto } from './dto/create-transfers.dto';
 import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
 import { AccountsService } from '../accounts/accounts.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('transfers')
 export class TransfersController {
@@ -12,7 +13,7 @@ export class TransfersController {
         , private readonly accountsService: AccountsService
     ) {}
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Create a transfer' })
     @Post()
     async create(@Body() CreateTransfersDto: CreateTransfersDto) {
@@ -54,5 +55,4 @@ export class TransfersController {
     async getTransfersByReceiverAccountNumber(@Param('receiverAccountNumber') accountNumber: string): Promise<Transfers[]> {
         return this.TransfersService.findByReceiverAccountNumber(accountNumber);
     }
-
 }

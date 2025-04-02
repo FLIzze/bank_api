@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
@@ -24,34 +25,46 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConvertModule } from './convert/convert.module';
 import { ConvertController } from './convert/convert.controller';
+import { ConfigModule } from '@nestjs/config';
+import { AuthGuard } from './auth/auth.guard';
+
 @Module({
-  imports: [DatabaseModule,
-    ClientsModule, 
-    AccountsModule, 
-    CreditcardsModule, 
-    LoansModule, 
-    NotificationsModule, 
-    MessagesModule, 
-    AdvisorsModule, 
-    TransfersModule, 
-    BeneficiaryModule, 
-    AuthModule,
-    MongooseModule.forRoot(process.env.DB_URI),
-    ConvertModule
-  ],
-  controllers: [AppController, 
-    ClientsController, 
-    AccountsController, 
-    CreditcardsController, 
-    LoansController, 
-    NotificationsController, 
-    MessagesController, 
-    AdvisorsController, 
-    TransfersController,
-    BeneficiaryController,
-    ConvertController
-  ],
-  providers: [AppService],
+        imports: [
+                ConfigModule.forRoot(),
+                DatabaseModule,
+                forwardRef(() => ClientsModule), 
+                AccountsModule, 
+                CreditcardsModule, 
+                LoansModule, 
+                NotificationsModule, 
+                MessagesModule, 
+                AdvisorsModule, 
+                TransfersModule, 
+                BeneficiaryModule, 
+                forwardRef(() => AuthModule),
+                MongooseModule.forRoot(process.env.DB_URI),
+                ConvertModule
+        ],
+        controllers: [
+                AppController, 
+                ClientsController, 
+                AccountsController, 
+                CreditcardsController, 
+                LoansController, 
+                NotificationsController, 
+                MessagesController, 
+                AdvisorsController, 
+                TransfersController,
+                BeneficiaryController,
+                ConvertController
+        ],
+        providers: [
+                AppService,
+                {
+                        provide: APP_GUARD,
+                        useClass: AuthGuard,
+                },
+        ],
 })
 
 export class AppModule {}

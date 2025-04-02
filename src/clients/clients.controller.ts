@@ -1,9 +1,10 @@
-import {Controller, Body, Get, Post, Param, Put, Delete} from '@nestjs/common';
+import { Controller, Body, Get, Param, Put, Delete, UseGuards } from '@nestjs/common';
+import { Public } from '../auth/public-strategy';
 import { CreateClientsDto } from './dto/create-clients.dto';
 import { ClientsService } from './clients.service';
 import { Clients } from './interfaces/clients.interfaces';
-import { Public } from '../auth/public-strategy';
 import { ApiOperation } from '@nestjs/swagger';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('clients')
 export class ClientsController {
@@ -23,14 +24,14 @@ export class ClientsController {
         return this.ClientsService.findOne(clientId);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Update a client' })
     @Put(':clientId')
     async update(@Param('clientId') clientId:string, @Body() CreateClientsDto:CreateClientsDto) {
         return this.ClientsService.update(clientId, CreateClientsDto);
     }
 
-    @Public()
+    @UseGuards(AuthGuard)
     @ApiOperation({ summary: 'Delete a client' })
     @Delete(':clientId')
     async delete(@Param('clientId') clientId:string) {

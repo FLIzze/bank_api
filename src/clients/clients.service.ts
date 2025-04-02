@@ -30,7 +30,7 @@ export class ClientsService {
         return this.clientsModel.findOneAndDelete({_id: clientId}).exec();
     }
 
-    async findOneBy(mail: string): Promise<Clients> {
-        return this.clientsModel.findOne({ mail }).exec();
+    async findOneBy(phone: string): Promise<Clients> {
+        return this.clientsModel.findOne({ phone }).exec();
     }
 }

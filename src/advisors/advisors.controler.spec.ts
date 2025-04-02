@@ -21,7 +21,7 @@ describe('AdvisorsController', () => {
             _id: '6750caa88f05311c5b33c3f4',
             phone: '0620853890',
             mail: 'test@mail.com',
-            passcode: 'Password123',
+            passcode: '123456',
             birthdate: new Date('2004-02-09T00:00:00Z'),
             address: '23 Rue Toulouse Lautrec',
             zipcode: 33530,

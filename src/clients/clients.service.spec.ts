@@ -12,7 +12,7 @@ describe('ClientsService', () => {
     const mockClient = {
       phone: '0620853890',
       mail: 'test@mail.com',
-      passcode: 'Password123',
+      passcode: '123456',
       birthdate: new Date('2004-02-09T00:00:00Z'),
       address: '23 Rue Toulouse Lautrec',
       zipcode: 33530,
@@ -51,7 +51,7 @@ describe('ClientsService', () => {
     const clientDto:CreateClientsDto = {
       phone: '0620853890',
       mail: 'test@mail.com',
-      passcode: 'Password123',
+      passcode: '123456',
       birthdate: new Date('2004-02-09T00:00:00Z'),
       address: '23 Rue Toulouse Lautrec',
       zipcode: 33530,
@@ -75,7 +75,7 @@ describe('ClientsService', () => {
         _id: '507f191e810c19729de860ea',
         phone: '0620853890',
         mail: 'test@mail.com',
-        passcode: 'Password123',
+        passcode: '123456',
         birthdate: new Date('2004-02-09T00:00:00Z'),
         address: '23 Rue Toulouse Lautrec',
         zipcode: 33530,
@@ -85,7 +85,7 @@ describe('ClientsService', () => {
         _id: '507f191e810c19729de860ea',
         phone: '0620853890',
         mail: 'test@mail.com',
-        passcode: 'Password123',
+        passcode: '123456',
         birthdate: new Date('2004-02-09T00:00:00Z'),
         address: '23 Rue Toulouse Lautrec',
         zipcode: 33530,
@@ -109,7 +109,7 @@ describe('ClientsService', () => {
       _id: clientId,
       phone: '0620853890',
       mail: 'test@mail.com',
-      passcode: 'Password123',
+      passcode: '123456',
       birthdate: new Date('2004-02-09T00:00:00Z'),
       address: '23 Rue Toulouse Lautrec',
       zipcode: 33530,
@@ -131,7 +131,7 @@ describe('ClientsService', () => {
     const updateDto:CreateClientsDto = {
       phone: '0712345678',
       mail: 'test@mail.com',
-      passcode: 'Password123',
+      passcode: '123456',
       birthdate: new Date('2004-02-09T00:00:00Z'),
       address: '23 Rue Toulouse Lautrec',
       zipcode: 33530,
@@ -164,7 +164,7 @@ describe('ClientsService', () => {
       _id: clientId,
       phone: '0620853890',
       mail: 'test@mail.com',
-      passcode: 'Password123',
+      passcode: '123456',
       birthdate: new Date('2004-02-09T00:00:00Z'),
       address: '23 Rue Toulouse Lautrec',
       zipcode: 33530,
@@ -182,12 +182,12 @@ describe('ClientsService', () => {
   });
 
   it('should find a client by email', async () => {
-    const email = 'test@mail.com';
+    const email = '0620853890';
     const mockClient = {
       _id: '507f191e810c19729de860ea',
       phone: '0620853890',
       mail: email,
-      passcode: 'Password123',
+      passcode: '123456',
       birthdate: new Date('2004-02-09T00:00:00Z'),
       address: '23 Rue Toulouse Lautrec',
       zipcode: 33530,
@@ -199,7 +199,7 @@ describe('ClientsService', () => {
       exec: jest.fn().mockResolvedValue(mockClient),
     });
   
-    const result = await service.findOneBy(email);
+    const result = await service.findOneBy(phone);
     expect(result).toEqual(mockClient);
     expect(model.findOne).toHaveBeenCalledWith({ mail: email });
   });
